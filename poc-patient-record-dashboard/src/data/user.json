@@ -1,0 +1,39 @@
+{
+  "id": "USR-001",
+  "firstName": "Zenyx",
+  "lastName": "Admin",
+  "email": "admin@zenyxclinic.com",
+  "role": "Administrator",
+  "avatar": null,
+  "clinic": {
+    "id": "CLN-001",
+    "name": "zenyx diagnostic clinic",
+    "version": "v1.1.28"
+  },
+  "permissions": [
+    "appointments.view",
+    "appointments.create",
+    "appointments.edit",
+    "patients.view",
+    "patients.create",
+    "patients.edit",
+    "billing.view",
+    "billing.create",
+    "billing.edit",
+    "laboratory.view",
+    "laboratory.create",
+    "consultations.view",
+    "consultations.create",
+    "medical-certificates.view",
+    "medical-certificates.create",
+    "doctors.view",
+    "doctors.manage",
+    "services.view",
+    "services.manage",
+    "inventory.view",
+    "inventory.manage",
+    "users.view",
+    "users.manage"
+  ],
+  "isLoggedIn": true
+}
