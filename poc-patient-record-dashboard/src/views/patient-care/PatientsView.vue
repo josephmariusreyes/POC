@@ -103,15 +103,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import PageHeader from '@/components/common/PageHeader.vue'
+import type { Patient, NewPatient, TableHeader } from '@/types'
 
 const loading = ref(false)
 const searchQuery = ref('')
 const showNewPatientDialog = ref(false)
 
-const newPatient = ref({
+const newPatient = ref<NewPatient>({
   firstName: '',
   lastName: '',
   birthDate: '',
@@ -120,13 +121,13 @@ const newPatient = ref({
   address: '',
 })
 
-const patients = ref([
+const patients = ref<Patient[]>([
   { id: 1, patientId: 'P2026-000001', name: 'Juan Dela Cruz', age: 35, gender: 'Male', contact: '+63 912 345 6789', lastVisit: 'Feb 21, 2026' },
   { id: 2, patientId: 'P2026-000002', name: 'Maria Santos', age: 28, gender: 'Female', contact: '+63 917 123 4567', lastVisit: 'Feb 20, 2026' },
   { id: 3, patientId: 'P2026-000003', name: 'Pedro Garcia', age: 42, gender: 'Male', contact: '+63 918 765 4321', lastVisit: 'Feb 19, 2026' },
 ])
 
-const tableHeaders = [
+const tableHeaders: TableHeader[] = [
   { title: 'NAME', key: 'name', sortable: true },
   { title: 'AGE', key: 'age', sortable: true },
   { title: 'GENDER', key: 'gender', sortable: true },
@@ -135,7 +136,7 @@ const tableHeaders = [
   { title: 'ACTIONS', key: 'actions', align: 'center', sortable: false },
 ]
 
-const filteredPatients = computed(() => {
+const filteredPatients = computed<Patient[]>(() => {
   if (!searchQuery.value) return patients.value
   const query = searchQuery.value.toLowerCase()
   return patients.value.filter(p => 
@@ -144,19 +145,19 @@ const filteredPatients = computed(() => {
   )
 })
 
-function getInitials(name) {
+function getInitials(name: string): string {
   return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
 }
 
-function viewPatient(patient) {
+function viewPatient(patient: Patient): void {
   console.log('View patient:', patient)
 }
 
-function editPatient(patient) {
+function editPatient(patient: Patient): void {
   console.log('Edit patient:', patient)
 }
 
-function savePatient() {
+function savePatient(): void {
   console.log('Save patient:', newPatient.value)
   showNewPatientDialog.value = false
 }

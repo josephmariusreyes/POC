@@ -59,24 +59,24 @@
     >
       <template #item.patient="{ item }">
         <div>
-          <div class="font-weight-medium">{{ item.patient.name }}</div>
-          <div class="text-caption text-grey">{{ item.patient.id }}</div>
+          <div class="font-weight-medium">{{ (item as BillingItem).patient.name }}</div>
+          <div class="text-caption text-grey">{{ (item as BillingItem).patient.id }}</div>
         </div>
       </template>
 
       <template #item.total="{ item }">
         <span class="text-primary font-weight-medium">
-          ₱{{ formatNumber(item.total) }}
+          ₱{{ formatNumber((item as BillingItem).total) }}
         </span>
       </template>
 
       <template #item.status="{ item }">
         <v-chip
-          :color="getStatusColor(item.status)"
+          :color="getStatusColor((item as BillingItem).status)"
           size="small"
           label
         >
-          {{ item.status }}
+          {{ (item as BillingItem).status }}
         </v-chip>
       </template>
 
@@ -127,57 +127,64 @@
   </v-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
+import type { TableHeader, BillingStatus } from '@/types'
 
-const props = defineProps({
-  headers: {
-    type: Array,
-    required: true,
-  },
-  items: {
-    type: Array,
-    default: () => [],
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  totalItems: {
-    type: Number,
-    default: 0,
-  },
-  statusOptions: {
-    type: Array,
-    default: () => ['All Status', 'Paid', 'Pending', 'Cancelled'],
-  },
+// Type for billing items used in template
+interface BillingItem {
+  patient: { id: string; name: string }
+  total: number
+  status: BillingStatus
+}
+
+interface Props {
+  headers: TableHeader[]
+  items?: unknown[]
+  loading?: boolean
+  totalItems?: number
+  statusOptions?: string[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  items: () => [],
+  loading: false,
+  totalItems: 0,
+  statusOptions: () => ['All Status', 'Paid', 'Pending', 'Cancelled'],
 })
 
-defineEmits(['search', 'filter-status', 'filter-date-from', 'filter-date-to', 'view', 'print'])
+defineEmits<{
+  search: [query: string]
+  'filter-status': [status: string | null]
+  'filter-date-from': [date: string]
+  'filter-date-to': [date: string]
+  view: [item: unknown]
+  print: [item: unknown]
+}>()
 
 const searchQuery = ref('')
-const selectedStatus = ref(null)
+const selectedStatus = ref<string | null>(null)
 const dateFrom = ref('')
 const dateTo = ref('')
 const itemsPerPage = ref(15)
 const currentPage = ref(1)
 
-const totalPages = computed(() => {
+const totalPages = computed<number>(() => {
   return Math.ceil(props.totalItems / itemsPerPage.value) || 1
 })
 
-const paginationText = computed(() => {
+const paginationText = computed<string>(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value + 1
   const end = Math.min(currentPage.value * itemsPerPage.value, props.totalItems)
   return `${start}-${end} · ${props.totalItems} total`
 })
 
-function formatNumber(num) {
+function formatNumber(num: number): string {
   return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
 
-function getStatusColor(status) {
-  const colors = {
+function getStatusColor(status: BillingStatus): string {
+  const colors: Record<BillingStatus, string> = {
     'Paid': 'success',
     'Pending': 'warning',
     'Cancelled': 'error',

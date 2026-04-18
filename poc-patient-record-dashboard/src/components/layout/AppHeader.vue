@@ -67,37 +67,42 @@
   </v-app-bar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
+interface BreadcrumbItem {
+  title: string
+  disabled: boolean
+}
+
 const route = useRoute()
 const userStore = useUserStore()
 
-const fullName = computed(() => userStore.fullName)
-const userInitials = computed(() => userStore.initials)
-const userEmail = computed(() => userStore.user?.email || '')
+const fullName = computed<string>(() => userStore.fullName)
+const userInitials = computed<string>(() => userStore.initials)
+const userEmail = computed<string>(() => userStore.user?.email || '')
 
-const breadcrumbs = computed(() => {
-  const items = []
+const breadcrumbs = computed<BreadcrumbItem[]>(() => {
+  const items: BreadcrumbItem[] = []
   
   if (route.meta?.section) {
     items.push({
-      title: route.meta.section,
+      title: route.meta.section as string,
       disabled: false,
     })
   }
   
   items.push({
-    title: route.name || 'Page',
+    title: (route.name as string) || 'Page',
     disabled: true,
   })
   
   return items
 })
 
-function handleLogout() {
+function handleLogout(): void {
   userStore.logout()
   // In a real app, redirect to login page
 }

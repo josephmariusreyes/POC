@@ -27,24 +27,18 @@
   </div>
 </template>
 
-<script setup>
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  subtitle: {
-    type: String,
-    default: '',
-  },
-  icon: {
-    type: String,
-    default: '',
-  },
-  gradient: {
-    type: Boolean,
-    default: true,
-  },
+<script setup lang="ts">
+interface Props {
+  title: string
+  subtitle?: string
+  icon?: string
+  gradient?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  subtitle: '',
+  icon: '',
+  gradient: true,
 })
 </script>
 

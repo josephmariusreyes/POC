@@ -67,10 +67,11 @@
   </v-navigation-drawer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import type { NavigationSection, Clinic } from '@/types'
 
 const route = useRoute()
 const userStore = useUserStore()
@@ -78,9 +79,9 @@ const userStore = useUserStore()
 const drawer = ref(true)
 const rail = ref(false)
 
-const clinic = computed(() => userStore.clinic)
+const clinic = computed<Clinic | null>(() => userStore.clinic)
 
-const navigationSections = [
+const navigationSections: NavigationSection[] = [
   {
     title: 'Clinic Operations',
     items: [
@@ -120,7 +121,7 @@ const navigationSections = [
   },
 ]
 
-function isActive(path) {
+function isActive(path: string): boolean {
   return route.path === path
 }
 </script>

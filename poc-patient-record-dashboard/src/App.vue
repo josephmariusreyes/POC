@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import AppSidebar from '@/components/layout/AppSidebar.vue'

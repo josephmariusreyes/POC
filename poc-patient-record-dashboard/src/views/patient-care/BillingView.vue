@@ -137,27 +137,28 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import PageHeader from '@/components/common/PageHeader.vue'
 import DataTable from '@/components/common/DataTable.vue'
+import type { Billing, BillingPatient, NewBilling, TableHeader, BillingStatus } from '@/types'
 
 // State
 const loading = ref(false)
 const showNewBillingDialog = ref(false)
 const showViewDialog = ref(false)
-const selectedBilling = ref(null)
+const selectedBilling = ref<Billing | null>(null)
 const searchQuery = ref('')
-const statusFilter = ref(null)
+const statusFilter = ref<string | null>(null)
 
-const newBilling = ref({
+const newBilling = ref<NewBilling>({
   patientId: null,
   date: '',
   notes: '',
 })
 
 // Sample data
-const billings = ref([
+const billings = ref<Billing[]>([
   {
     id: 1,
     billingNumber: 'BL-2026-000001',
@@ -187,13 +188,13 @@ const billings = ref([
   },
 ])
 
-const patients = ref([
+const patients = ref<BillingPatient[]>([
   { id: 'P2026-000001', name: 'juan dela cruz' },
   { id: 'P2026-000002', name: 'maria santos' },
   { id: 'P2026-000003', name: 'pedro garcia' },
 ])
 
-const tableHeaders = [
+const tableHeaders: TableHeader[] = [
   { title: 'BILLING #', key: 'billingNumber', sortable: true },
   { title: 'PATIENT', key: 'patient', sortable: true },
   { title: 'DATE', key: 'date', sortable: true },
@@ -203,46 +204,46 @@ const tableHeaders = [
   { title: 'ACTIONS', key: 'actions', align: 'center', sortable: false },
 ]
 
-const totalBillings = computed(() => billings.value.length)
+const totalBillings = computed<number>(() => billings.value.length)
 
 // Methods
-function openNewBillingDialog() {
+function openNewBillingDialog(): void {
   newBilling.value = { patientId: null, date: '', notes: '' }
   showNewBillingDialog.value = true
 }
 
-function saveBilling() {
+function saveBilling(): void {
   // In a real app, this would make an API call
   console.log('Saving billing:', newBilling.value)
   showNewBillingDialog.value = false
 }
 
-function viewBilling(billing) {
-  selectedBilling.value = billing
+function viewBilling(billing: unknown): void {
+  selectedBilling.value = billing as Billing
   showViewDialog.value = true
 }
 
-function printBilling(billing) {
-  console.log('Printing billing:', billing.billingNumber)
+function printBilling(billing: unknown): void {
+  console.log('Printing billing:', (billing as Billing).billingNumber)
   // Implement print functionality
 }
 
-function handleSearch(query) {
+function handleSearch(query: string): void {
   searchQuery.value = query
   // Implement search logic
 }
 
-function handleStatusFilter(status) {
+function handleStatusFilter(status: string | null): void {
   statusFilter.value = status
   // Implement filter logic
 }
 
-function formatNumber(num) {
+function formatNumber(num: number): string {
   return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
 
-function getStatusColor(status) {
-  const colors = {
+function getStatusColor(status: BillingStatus): string {
+  const colors: Record<BillingStatus, string> = {
     'Paid': 'success',
     'Pending': 'warning',
     'Cancelled': 'error',
