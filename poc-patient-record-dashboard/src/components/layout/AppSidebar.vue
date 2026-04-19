@@ -1,22 +1,21 @@
 <template>
   <v-navigation-drawer
     v-model="drawer"
-    :rail="rail"
     permanent
-    color="primary"
+    color="white"
     class="app-sidebar"
   >
     <!-- Clinic Logo & Name -->
     <div class="sidebar-header pa-4">
       <div class="d-flex align-center">
-        <v-avatar color="white" size="36" class="mr-3">
-          <span class="text-primary font-weight-bold">Z</span>
+        <v-avatar color="primary" size="36" class="mr-3">
+          <span class="text-white font-weight-bold">{{ clinic?.name?.charAt(0).toUpperCase() || 'Z' }}</span>
         </v-avatar>
-        <div v-if="!rail" class="clinic-info">
-          <div class="clinic-name text-white font-weight-medium">
+        <div class="clinic-info">
+          <div class="clinic-name text-black font-weight-medium">
             {{ clinic?.name || 'Clinic Name' }}
           </div>
-          <div class="clinic-version text-white-50 text-caption">
+          <div class="clinic-version text-black-50 text-caption">
             {{ clinic?.version || 'v1.0.0' }}
           </div>
         </div>
@@ -29,8 +28,7 @@
     <v-list density="compact" nav class="px-2">
       <template v-for="(section, sectionIndex) in navigationSections" :key="sectionIndex">
         <v-list-subheader 
-          v-if="!rail" 
-          class="text-white-50 text-uppercase text-caption mt-2"
+          class="text-black-50 text-uppercase text-caption mt-2"
         >
           {{ section.title }}
         </v-list-subheader>
@@ -44,26 +42,14 @@
           :active="isActive(item.path)"
           rounded="lg"
           class="nav-item mb-1"
-          color="white"
+          color="primary"
         >
           <template #append v-if="item.external">
-            <v-icon size="small" class="text-white-50">mdi-open-in-new</v-icon>
+            <v-icon size="small" class="text-black-50">mdi-open-in-new</v-icon>
           </template>
         </v-list-item>
       </template>
     </v-list>
-
-    <template #append>
-      <div class="pa-2">
-        <v-btn
-          block
-          variant="text"
-          color="white"
-          :icon="rail ? 'mdi-chevron-right' : 'mdi-chevron-left'"
-          @click="rail = !rail"
-        ></v-btn>
-      </div>
-    </template>
   </v-navigation-drawer>
 </template>
 
@@ -77,7 +63,6 @@ const route = useRoute()
 const userStore = useUserStore()
 
 const drawer = ref(true)
-const rail = ref(false)
 
 const clinic = computed<Clinic | null>(() => userStore.clinic)
 
@@ -128,7 +113,26 @@ function isActive(path: string): boolean {
 
 <style scoped>
 .app-sidebar {
-  border: none !important;
+  border-right: 2px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.app-sidebar :deep(.v-list-item-title),
+.app-sidebar :deep(.v-list-item .v-icon) {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.app-sidebar :deep(.v-list-item-title) {
+  text-align: left;
+}
+
+.app-sidebar :deep(.v-list-subheader) {
+  font-weight: 700;
+  justify-content: flex-start;
+}
+
+.app-sidebar :deep(.v-list-item--active .v-list-item-title),
+.app-sidebar :deep(.v-list-item--active .v-icon) {
+  color: rgb(var(--v-theme-primary)) !important;
 }
 
 .sidebar-header {
@@ -144,8 +148,8 @@ function isActive(path: string): boolean {
   font-size: 11px;
 }
 
-.text-white-50 {
-  color: rgba(255, 255, 255, 0.5) !important;
+.text-black-50 {
+  color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .nav-item {
