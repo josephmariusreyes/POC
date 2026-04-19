@@ -1,14 +1,14 @@
 {
   "id": "USR-001",
-  "firstName": "Zenyx",
-  "lastName": "Admin",
+  "firstName": "Max",
+  "lastName": "Ethan",
   "email": "admin@zenyxclinic.com",
   "role": "Administrator",
   "avatar": null,
   "clinic": {
     "id": "CLN-001",
-    "name": "zenyx diagnostic clinic",
-    "version": "v1.1.28"
+    "name": "Max Ethan",
+    "version": "v1.1.0"
   },
   "permissions": [
     "appointments.view",
