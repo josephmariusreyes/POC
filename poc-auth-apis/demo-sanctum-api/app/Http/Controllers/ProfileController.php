@@ -2,35 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\GetUserDetailsRequest;
+use App\Http\Requests\CreateUpdateUserRequest;
+use App\DTO\CreateUserDto;
+
+use App\Services\UserService\IUserService;
 
 class ProfileController extends Controller
 {
+	private IUserService $userService;
+
+	public function __construct(IUserService $userService)
+	{
+		$this->userService = $userService;
+	}
     public function getUserDetails(GetUserDetailsRequest $request)
 	{
-		       // You can access validated data via $request->validated() if rules are defined
-		       // Example: $data = $request->validated();
-		       return "getUserDetails Temp Response";
+		$validated = $request->validated();
+        return response()->json($this->userService->getUserById($validated['id']));
 	}
 
 	public function getAllUsers()
 	{
-		return "getAllUsers Temp Response";
+		return response()->json($this->userService->getAllUser());
 	}
 
-	public function createUser(Request $request)
+	public function createUser(CreateUpdateUserRequest $request)
 	{
-		return "createUser Temp Response";
+		$validated = $request->validated();
+		$createdUserDto = new CreateUserDto(
+			name: $validated['name'],
+			email: $validated['email'],
+			password: $validated['password'],
+		);
+
+		return response()->json($this->userService->createUser($createdUserDto));
 	}
 
-	public function updateUser(Request $request, int $id)
+	public function updateUser(CreateUpdateUserRequest $request)
 	{
-		return "updateUser Temp Response";
+		$validated = $request->validated();
+		$updateUserDto = new CreateUserDto(
+			name: $validated['name'],
+			email: $validated['email'],
+			password: $validated['password'],
+		);
+		$updatedUser = $this->userService->updateUser($validated['id'], $updateUserDto);
+		return response()->json($updatedUser);
 	}
 
 	public function deleteUser(int $id)
 	{
-		return "deleteUser Temp Response";
+		$result = $this->userService->deleteUser($id);
+		return response()->json(['success' => $result]);
 	}
 }
