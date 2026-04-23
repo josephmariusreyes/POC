@@ -32,7 +32,16 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+    public function withRole(string $roleName)
+    {
+        return $this->afterCreating(function ($user) use ($roleName) {
+            $role = \App\Models\Role::where('name', $roleName)->first();
 
+            if ($role) {
+                $user->roles()->attach($role->id);
+            }
+        });
+    }
     /**
      * Indicate that the model's email address should be unverified.
      */
