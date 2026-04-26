@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
         Schema::create('lookup.customer_status', function(Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('value');
+            $table->integer('value')->unique();
         });
     }
 
