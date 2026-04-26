@@ -11,24 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function(Blueprint $table) {
+          Schema::create('customers', function(Blueprint $table) {
             $table->id();
             $table->foreignId('event_id')
-                  ->constrained('events')
-                  ->cascadeOnDelete();    
+                ->constrained('events')
+                ->cascadeOnDelete();    
 
             $table->string('first_name');
             $table->string('last_name');
             $table->string('mobile_number');
+            $table->index('mobile_number');
             $table->timestamps();
             $table->timestamp('accepted_on');
             $table->timestamp('ended_on');
             $table->integer('que_number');
 
             $table->foreignId('customer_status')
-                  ->constrained('lookup.customer_status', 'value')
-                  ->cascadeOnDelete();
-        });
+                ->constrained('lookup.customer_status', 'value')
+                ->cascadeOnDelete();
+          });
     }
 
     /**
