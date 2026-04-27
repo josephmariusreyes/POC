@@ -12,6 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        DB::statement('DROP SCHEMA IF EXISTS lookup CASCADE');
         DB::statement('CREATE SCHEMA IF NOT EXISTS lookup');
     }
 
