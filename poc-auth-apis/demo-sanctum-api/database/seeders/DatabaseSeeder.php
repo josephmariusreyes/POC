@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,24 +14,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::factory()->superAdmin()->create();
-        Role::factory()->eventOrganizer()->create();
-        Role::factory()->queAdmin()->create();
-        Role::factory()->queEncoder()->create();
+        // Seed companies
+        $this->call(CompanySeeder::class);
+        
+        // Seed roles
+        $this->call(RoleSeeder::class);
 
-        User::factory()
-            ->count(1)
-            ->withRole('SuperAdmin')
-            ->create();
+        // Seed users
+        $this->call(UserSeeder::class);
 
-        User::factory()
-            ->count(1)
-            ->withRole('EventOrganizer')
-            ->create();
 
-        User::factory()
-            ->count(1)
-            ->withRole('QueAdmin')
-            ->create();
+        //Will use factory seeding later on
+        //Seed 3 users of different type
+        // User::factory()
+        //     ->count(1)
+        //     ->withRole('SuperAdmin')
+        //     ->create();
+
+        // User::factory()
+        //     ->count(1)
+        //     ->withRole('EventOrganizer')
+        //     ->create();
+
+        // User::factory()
+        //     ->count(1)
+        //     ->withRole('QueAdmin')
+        //     ->create();
+        
     }
 }
