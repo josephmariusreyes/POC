@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "username": "admin",
+    "password": "admin123",
+    "role": "admin",
+    "isActive": true
+  },
+  {
+    "id": 2,
+    "name": "Miguel Santos",
+    "email": "miguel@example.com",
+    "username": "miguel",
+    "password": "password123",
+    "role": "manager",
+    "isActive": true
+  },
+  {
+    "id": 3,
+    "name": "Angela Cruz",
+    "email": "angela@example.com",
+    "username": "angela",
+    "password": "secret123",
+    "role": "staff",
+    "isActive": true
+  },
+  {
+    "id": 4,
+    "name": "John Villanueva",
+    "email": "john@example.com",
+    "username": "john",
+    "password": "john123",
+    "role": "staff",
+    "isActive": false
+  },
+  {
+    "id": 5,
+    "name": "Sophia Lim",
+    "email": "sophia@example.com",
+    "username": "sophia",
+    "password": "sophia123",
+    "role": "viewer",
+    "isActive": true
+  }
+]

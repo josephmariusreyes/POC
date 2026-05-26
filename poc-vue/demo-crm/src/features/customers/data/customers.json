@@ -1,0 +1,322 @@
+[
+  {
+    "personalInfo": {
+      "customerId": "CUST-1001",
+      "firstName": "Miguel",
+      "lastName": "Santos",
+      "middleName": "Reyes",
+      "birthDate": "1992-04-18",
+      "gender": "Male",
+      "civilStatus": "Married",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "miguel.santos@example.com",
+      "phone": "+639171112233",
+      "alternatePhone": "+639181112233"
+    },
+    "address": {
+      "street": "45 Mahogany St.",
+      "barangay": "Bagumbayan",
+      "city": "Quezon City",
+      "province": "Metro Manila",
+      "postalCode": "1110",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Full-time",
+      "company": "Accenture",
+      "jobTitle": "Software Engineer",
+      "monthlyIncome": 85000,
+      "yearsEmployed": 5
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1002",
+      "firstName": "Angela",
+      "lastName": "Cruz",
+      "middleName": "Lopez",
+      "birthDate": "1988-09-12",
+      "gender": "Female",
+      "civilStatus": "Single",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "angela.cruz@example.com",
+      "phone": "+639221234567",
+      "alternatePhone": "+639231234567"
+    },
+    "address": {
+      "street": "12 Sampaguita Ave.",
+      "barangay": "San Isidro",
+      "city": "Pasig",
+      "province": "Metro Manila",
+      "postalCode": "1600",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Full-time",
+      "company": "Globe Telecom",
+      "jobTitle": "Project Manager",
+      "monthlyIncome": 120000,
+      "yearsEmployed": 7
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1003",
+      "firstName": "John",
+      "lastName": "Villanueva",
+      "middleName": "Garcia",
+      "birthDate": "1995-01-30",
+      "gender": "Male",
+      "civilStatus": "Single",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "john.villanueva@example.com",
+      "phone": "+639351112222",
+      "alternatePhone": "+639361112222"
+    },
+    "address": {
+      "street": "88 Mango Drive",
+      "barangay": "Talamban",
+      "city": "Cebu City",
+      "province": "Cebu",
+      "postalCode": "6000",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Freelance",
+      "company": "Self-employed",
+      "jobTitle": "UI/UX Designer",
+      "monthlyIncome": 65000,
+      "yearsEmployed": 4
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1004",
+      "firstName": "Sophia",
+      "lastName": "Lim",
+      "middleName": "Tan",
+      "birthDate": "1990-06-25",
+      "gender": "Female",
+      "civilStatus": "Married",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "sophia.lim@example.com",
+      "phone": "+639451234111",
+      "alternatePhone": "+639461234111"
+    },
+    "address": {
+      "street": "14 Orchid Lane",
+      "barangay": "Lahug",
+      "city": "Cebu City",
+      "province": "Cebu",
+      "postalCode": "6000",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Part-time",
+      "company": "University of Cebu",
+      "jobTitle": "College Instructor",
+      "monthlyIncome": 45000,
+      "yearsEmployed": 6
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1005",
+      "firstName": "Carlo",
+      "lastName": "Fernandez",
+      "middleName": "Mendoza",
+      "birthDate": "1985-11-08",
+      "gender": "Male",
+      "civilStatus": "Widowed",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "carlo.fernandez@example.com",
+      "phone": "+639551112345",
+      "alternatePhone": "+639561112345"
+    },
+    "address": {
+      "street": "102 Rizal Ave.",
+      "barangay": "Poblacion",
+      "city": "Davao City",
+      "province": "Davao del Sur",
+      "postalCode": "8000",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Business Owner",
+      "company": "Fernandez Hardware",
+      "jobTitle": "Owner",
+      "monthlyIncome": 150000,
+      "yearsEmployed": 10
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1006",
+      "firstName": "Patricia",
+      "lastName": "Ramos",
+      "middleName": "Diaz",
+      "birthDate": "1997-03-21",
+      "gender": "Female",
+      "civilStatus": "Single",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "patricia.ramos@example.com",
+      "phone": "+639661234567",
+      "alternatePhone": "+639671234567"
+    },
+    "address": {
+      "street": "77 Acacia Road",
+      "barangay": "Buhangin",
+      "city": "Davao City",
+      "province": "Davao del Sur",
+      "postalCode": "8000",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Full-time",
+      "company": "Aboitiz",
+      "jobTitle": "HR Specialist",
+      "monthlyIncome": 58000,
+      "yearsEmployed": 3
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1007",
+      "firstName": "Daniel",
+      "lastName": "Aquino",
+      "middleName": "Torres",
+      "birthDate": "1993-12-14",
+      "gender": "Male",
+      "civilStatus": "Single",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "daniel.aquino@example.com",
+      "phone": "+639771111111",
+      "alternatePhone": "+639781111111"
+    },
+    "address": {
+      "street": "9 Pine St.",
+      "barangay": "San Jose",
+      "city": "Baguio",
+      "province": "Benguet",
+      "postalCode": "2600",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Full-time",
+      "company": "Concentrix",
+      "jobTitle": "Operations Supervisor",
+      "monthlyIncome": 72000,
+      "yearsEmployed": 5
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1008",
+      "firstName": "Katherine",
+      "lastName": "Morales",
+      "middleName": "Santiago",
+      "birthDate": "1991-08-19",
+      "gender": "Female",
+      "civilStatus": "Married",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "katherine.morales@example.com",
+      "phone": "+639881234567",
+      "alternatePhone": "+639891234567"
+    },
+    "address": {
+      "street": "55 Lavender St.",
+      "barangay": "Mabolo",
+      "city": "Cebu City",
+      "province": "Cebu",
+      "postalCode": "6000",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Remote",
+      "company": "Upwork",
+      "jobTitle": "Virtual Assistant",
+      "monthlyIncome": 50000,
+      "yearsEmployed": 4
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1009",
+      "firstName": "Joshua",
+      "lastName": "Perez",
+      "middleName": "Navarro",
+      "birthDate": "1999-02-10",
+      "gender": "Male",
+      "civilStatus": "Single",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "joshua.perez@example.com",
+      "phone": "+639991234567",
+      "alternatePhone": "+639981234567"
+    },
+    "address": {
+      "street": "3 Molave St.",
+      "barangay": "Banilad",
+      "city": "Mandaue",
+      "province": "Cebu",
+      "postalCode": "6014",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Contractual",
+      "company": "Toyota Cebu",
+      "jobTitle": "Sales Associate",
+      "monthlyIncome": 38000,
+      "yearsEmployed": 2
+    }
+  },
+  {
+    "personalInfo": {
+      "customerId": "CUST-1010",
+      "firstName": "Maria",
+      "lastName": "De Leon",
+      "middleName": "Castillo",
+      "birthDate": "1987-07-15",
+      "gender": "Female",
+      "civilStatus": "Married",
+      "nationality": "Filipino"
+    },
+    "contactInfo": {
+      "email": "maria.deleon@example.com",
+      "phone": "+639121234567",
+      "alternatePhone": "+639131234567"
+    },
+    "address": {
+      "street": "21 Palm St.",
+      "barangay": "Sta. Lucia",
+      "city": "Pasig",
+      "province": "Metro Manila",
+      "postalCode": "1608",
+      "country": "Philippines"
+    },
+    "employment": {
+      "employmentStatus": "Government",
+      "company": "Department of Education",
+      "jobTitle": "Public School Teacher",
+      "monthlyIncome": 42000,
+      "yearsEmployed": 11
+    }
+  }
+]
