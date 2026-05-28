@@ -1,6 +1,15 @@
 <template>
-	<Card class="border-white/70 bg-white/90 shadow-xl shadow-slate-200/70 backdrop-blur">
-		<CardContent class="space-y-6 p-6 sm:p-8">
+	<Card>
+		<!--
+			space-y-6: adds vertical spacing between each direct child inside the card content.
+			p-6: applies consistent padding on all sides of the card content.
+			sm:p-8: increases that padding on small screens and up for a roomier layout.
+		-->
+		<CardContent
+			class="space-y-6
+			p-6
+			sm:p-8"
+		>
 			<div class="space-y-2">
 				<h3 class="text-xl font-semibold tracking-tight text-slate-950">Sign in</h3>
 				<p class="text-sm text-slate-600">
