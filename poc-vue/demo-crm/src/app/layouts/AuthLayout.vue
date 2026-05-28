@@ -6,7 +6,7 @@
   <div
     class="min-h-screen
     text-foreground
-	auth-layout-background
+	  auth-layout-background
 	"
   >
     <!--

@@ -11,7 +11,7 @@ const router = createRouter({
 			redirect: '/auth/login',
 		},
 		authRoutes,
-		...customerRoutes,
+		customerRoutes,
 	],
 })
 
