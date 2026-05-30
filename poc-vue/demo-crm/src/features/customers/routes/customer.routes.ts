@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import CustomerLayout from '@/app/layouts/CustomerLayout.vue'
+import CustomerLayout from '@/components/layouts/CustomerLayout.vue'
 import CustomerCreatePage from '@/features/customers/pages/CustomerCreatePage.vue'
 import CustomerDetailsPage from '@/features/customers/pages/CustomerDetailsPage.vue'
 import CustomerListPage from '@/features/customers/pages/CustomerListPage.vue'

@@ -13,8 +13,8 @@ then we will inject menus from different features of the app, for now this is fi
 							<GalleryVerticalEnd class="size-4" />
 						</div>
 						<div class="grid flex-1 text-left text-sm leading-tight">
-							<span class="truncate font-semibold">Acme Inc</span>
-							<span class="truncate text-xs">Enterprise</span>
+							<span class="truncate font-semibold">DEMO CRM UI</span>
+							<span class="truncate text-xs">jephreyes.com</span>
 						</div>
 					</SidebarMenuButton>
 				</SidebarMenuItem>

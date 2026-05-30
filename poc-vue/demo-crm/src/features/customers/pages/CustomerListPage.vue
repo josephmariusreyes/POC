@@ -30,12 +30,7 @@
             auth-layout-background: Applies the custom auth layout background style.
             -->
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0 text-foreground ">
-                
                 <div class="rounded-xl bg-muted/50 p-6">
-                    <h1 class="text-2xl font-semibold">Create Customer</h1>
-                    <p class="mt-2 text-sm text-muted-foreground">
-                        Customer creation form goes here.
-                    </p>
                 </div>
             </div>
         </SidebarInset>

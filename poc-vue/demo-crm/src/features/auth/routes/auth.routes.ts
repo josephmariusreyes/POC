@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import AuthLayout from '@/app/layouts/AuthLayout.vue'
+import AuthLayout from '@/components/layouts/AuthLayout.vue'
 import LoginPage from '@/features/auth/pages/LoginPage.vue'
 import RegisterPage from '@/features/auth/pages/RegisterPage.vue'
 

@@ -2,11 +2,12 @@
   <!--
     min-h-screen: sets the minimum height to 100vh so the wrapper fills the full screen height.
     text-foreground: applies the theme's foreground text color to everything inside this div.
+    
+    text-foreground
+	  auth-layout-background
   -->
   <div
     class="min-h-screen
-    text-foreground
-	  auth-layout-background
 	"
   >
     <!--
