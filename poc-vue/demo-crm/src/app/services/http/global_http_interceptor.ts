@@ -4,10 +4,19 @@ import type {
 	InternalAxiosRequestConfig,
 } from 'axios'
 
-const SIMULATED_BEARER_TOKEN = 'Bearer sim-token-7f3a1c92-demo'
+import { authService } from '@/features/auth/services/auth.service'
+
+
+function buildAuthorizationHeader(accessToken: string) {
+	return `Bearer ${accessToken}`
+}
 
 function assignAuthorizationHeader(config: InternalAxiosRequestConfig) {
-	config.headers.set('Authorization', SIMULATED_BEARER_TOKEN)
+	const accessToken = authService.getAccessToken()
+
+	if (accessToken) {
+		config.headers.set('Authorization', buildAuthorizationHeader(accessToken))
+	}
 
 	return config
 }
@@ -17,7 +26,6 @@ export function registerGlobalHttpInterceptors(http: AxiosInstance) {
 
 	http.interceptors.response.use(
 		(response: AxiosResponse) => {
-			console.log('HTTP response:', response)
 			return response
 		},
 		(error) => Promise.reject(error),
