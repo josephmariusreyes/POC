@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ArrowLeft } from '@lucide/vue'
 import { computed, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import { RouterLink, useRoute } from 'vue-router'
 
 import CustomerListSideBar from '@/features/customers/components/CustomerListSideBar.vue'
 import { customerService } from '@/features/customers/services/customer.service'
-import type { Customer } from '@/features/customers/types/customer.types'
+import { useCustomerStore } from '@/features/customers/stores/customer.store'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -15,6 +16,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import {
 	SidebarInset,
@@ -23,8 +26,10 @@ import {
 } from '@/components/ui/sidebar'
 
 const route = useRoute()
-const customer = ref<Customer | null>(null)
+const customerStore = useCustomerStore()
+const { customer } = storeToRefs(customerStore)
 const isLoading = ref(false)
+const isSaving = ref(false)
 const errorMessage = ref('')
 
 const customerId = computed(() => {
@@ -35,7 +40,8 @@ const customerId = computed(() => {
 
 async function loadCustomer(id: string) {
 	if (!id) {
-		customer.value = null
+		customerStore.setCustomer(null)
+		isLoading.value = false
 		errorMessage.value = 'Missing customer ID.'
 		return
 	}
@@ -44,12 +50,30 @@ async function loadCustomer(id: string) {
 	errorMessage.value = ''
 
 	try {
-		customer.value = await customerService.getById(id)
+		const result = await customerService.getById(id)
+		customerStore.setCustomer(result)
 	} catch {
-		customer.value = null
+		customerStore.setCustomer(null)
 		errorMessage.value = 'Failed to load customer details.'
 	} finally {
 		isLoading.value = false
+	}
+}
+
+async function saveCustomerChanges() {
+	if (!customer.value) {
+		return
+	}
+
+	isSaving.value = true
+
+	try {
+		const savedCustomer = await customerService.saveCustomer(customer.value)
+		customerStore.setCustomer(savedCustomer)
+	} catch {
+		errorMessage.value = 'Failed to save customer details.'
+	} finally {
+		isSaving.value = false
 	}
 }
 
@@ -81,15 +105,20 @@ watch(
 							<div>
 								<CardTitle>Customer Details</CardTitle>
 								<CardDescription>
-									View customer profile information.
+									View and update customer profile information.
 								</CardDescription>
 							</div>
-							<Button as-child variant="outline" size="sm">
-								<RouterLink :to="{ name: 'customer-listing' }">
-									<ArrowLeft class="h-4 w-4" />
-									Back to list
-								</RouterLink>
-							</Button>
+							<div class="flex items-center gap-2">
+								<Button variant="default" size="sm" :disabled="isSaving || !customer" @click="saveCustomerChanges">
+									{{ isSaving ? 'Saving...' : 'Save' }}
+								</Button>
+								<Button as-child variant="outline" size="sm">
+									<RouterLink :to="{ name: 'customer-listing' }">
+										<ArrowLeft class="h-4 w-4" />
+										Back to list
+									</RouterLink>
+								</Button>
+							</div>
 						</div>
 					</CardHeader>
 					<CardContent class="space-y-6">
@@ -108,36 +137,36 @@ watch(
 						<div v-else class="space-y-6">
 							<section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Customer ID</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.customerId }}</p>
+									<Label for="customer-id">Customer ID</Label>
+									<Input id="customer-id" v-model="customer.personalInfo.customerId" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">First Name</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.firstName }}</p>
+									<Label for="first-name">First Name</Label>
+									<Input id="first-name" v-model="customer.personalInfo.firstName" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Last Name</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.lastName }}</p>
+									<Label for="last-name">Last Name</Label>
+									<Input id="last-name" v-model="customer.personalInfo.lastName" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Middle Name</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.middleName }}</p>
+									<Label for="middle-name">Middle Name</Label>
+									<Input id="middle-name" v-model="customer.personalInfo.middleName" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Birth Date</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.birthDate }}</p>
+									<Label for="birth-date">Birth Date</Label>
+									<Input id="birth-date" type="date" v-model="customer.personalInfo.birthDate" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Gender</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.gender }}</p>
+									<Label for="gender">Gender</Label>
+									<Input id="gender" v-model="customer.personalInfo.gender" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Civil Status</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.civilStatus }}</p>
+									<Label for="civil-status">Civil Status</Label>
+									<Input id="civil-status" v-model="customer.personalInfo.civilStatus" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Nationality</p>
-									<p class="text-sm font-medium">{{ customer.personalInfo.nationality }}</p>
+									<Label for="nationality">Nationality</Label>
+									<Input id="nationality" v-model="customer.personalInfo.nationality" />
 								</div>
 							</section>
 
@@ -145,16 +174,16 @@ watch(
 
 							<section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Email</p>
-									<p class="text-sm font-medium">{{ customer.contactInfo.email }}</p>
+									<Label for="email">Email</Label>
+									<Input id="email" v-model="customer.contactInfo.email" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Phone</p>
-									<p class="text-sm font-medium">{{ customer.contactInfo.phone }}</p>
+									<Label for="phone">Phone</Label>
+									<Input id="phone" v-model="customer.contactInfo.phone" />
 								</div>
 								<div>
-									<p class="text-xs uppercase tracking-wide text-muted-foreground">Alternate Phone</p>
-									<p class="text-sm font-medium">{{ customer.contactInfo.alternatePhone }}</p>
+									<Label for="alternate-phone">Alternate Phone</Label>
+									<Input id="alternate-phone" v-model="customer.contactInfo.alternatePhone" />
 								</div>
 							</section>
 						</div>
