@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { customerService } from '@/features/customers/services/customer.service'
 import type { Customer } from '@/features/customers/types/customer.types'
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const router = useRouter()
 
 const customers = ref<Customer[]>([])
 const isLoading = ref(false)
@@ -35,6 +37,13 @@ async function loadCustomers(query: string) {
 	} finally {
 		isLoading.value = false
 	}
+}
+
+function goToCustomerDetails(customerId: string) {
+	void router.push({
+		name: 'customer-details',
+		query: { id: customerId },
+	})
 }
 
 watch(
@@ -62,7 +71,13 @@ watch(
 			<TableEmpty v-if="isLoading" :colspan="6">Loading customers...</TableEmpty>
 			<TableEmpty v-else-if="errorMessage" :colspan="6">{{ errorMessage }}</TableEmpty>
 			<TableEmpty v-else-if="customers.length === 0" :colspan="6">No customers found.</TableEmpty>
-			<TableRow v-else v-for="customer in customers" :key="customer.personalInfo.customerId">
+			<TableRow
+				v-else
+				v-for="customer in customers"
+				:key="customer.personalInfo.customerId"
+				class="cursor-pointer"
+				@click="goToCustomerDetails(customer.personalInfo.customerId)"
+			>
 				<TableCell>{{ customer.personalInfo.customerId }}</TableCell>
 				<TableCell>
 					{{ customer.personalInfo.lastName }}, {{ customer.personalInfo.firstName }}
