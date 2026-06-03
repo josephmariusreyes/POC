@@ -30,7 +30,9 @@
             auth-layout-background: Applies the custom auth layout background style.
             -->
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0 text-foreground ">
-                <div class="rounded-xl bg-muted/50 p-6">
+                <div class="rounded-xl bg-muted/50 p-6 space-y-4">
+                    <CustomerListFilter v-model="query" />
+                    <CustomerListTable :query="query" />
                 </div>
             </div>
         </SidebarInset>
@@ -38,11 +40,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
+import CustomerListFilter from '@/features/customers/components/CustomerListFilter/CustomerListFilter.vue'
 import CustomerListSideBar from '@/features/customers/components/CustomerListSideBar.vue'
+import CustomerListTable from '@/features/customers/components/CustomerListTable.vue'
 
 import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
 } from '@/components/ui/sidebar'
+
+const query = ref('')
 </script>
