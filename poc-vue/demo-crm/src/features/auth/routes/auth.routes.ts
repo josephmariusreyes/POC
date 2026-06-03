@@ -7,6 +7,9 @@ import RegisterPage from '@/features/auth/pages/RegisterPage.vue'
 export const authRoutes: RouteRecordRaw = {
 	path: '/auth',
 	component: AuthLayout,
+	meta: {
+		guestOnly: true,
+	},
 	children: [
 		{
 			path: '',
