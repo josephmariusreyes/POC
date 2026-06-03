@@ -32,4 +32,9 @@ export const customerService = {
 			) ?? null
 		)
 	},
+	async saveCustomer(customer: Customer) {
+		window.alert(`Saved customer details:\n${JSON.stringify(customer, null, 2)}`)
+
+		return customer
+	},
 }
