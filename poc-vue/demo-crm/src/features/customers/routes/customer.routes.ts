@@ -8,6 +8,9 @@ import CustomerListPage from '@/features/customers/pages/CustomerListPage.vue'
 export const customerRoutes: RouteRecordRaw = {
 	path: '/customers',
 	component: CustomerLayout,
+	meta: {
+		requiresAuth: true,
+	},
 	children: [
 		{
 			path: '',
@@ -16,6 +19,9 @@ export const customerRoutes: RouteRecordRaw = {
 		{
 			path: 'create',
 			name: 'customer-create',
+			meta: {
+				requiredRoles: ['admin', 'manager'],
+			},
 			component: CustomerCreatePage,
 		},
 		{

@@ -30,7 +30,7 @@ then we will inject menus from different features of the app, for now this is fi
 								<span>Customers</span>
 							</SidebarMenuButton>
 							<SidebarMenuSub v-if="isCustomersOpen">
-								<SidebarMenuSubItem>
+								<SidebarMenuSubItem v-if="canCreateCustomer">
 									<RouterLink :to="{ name: 'customer-create' }" custom v-slot="{ href, navigate, isActive }">
 										<SidebarMenuSubButton as-child :is-active="isActive">
 											<a :href="href" @click="navigate">
@@ -61,8 +61,11 @@ then we will inject menus from different features of the app, for now this is fi
 
 <script setup lang="ts">
 import { ChevronRight, GalleryVerticalEnd } from '@lucide/vue'
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+
+import { useAuthStore } from '@/features/auth/stores/auth.store'
 
 import {
 	Sidebar,
@@ -81,4 +84,7 @@ import {
 } from '@/components/ui/sidebar'
 
 const isCustomersOpen = ref(true)
+const authStore = useAuthStore()
+const { user } = storeToRefs(authStore)
+const canCreateCustomer = computed(() => user.value?.role === 'admin' || user.value?.role === 'manager')
 </script>
