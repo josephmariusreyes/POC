@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import CustomerListFilter from '@/features/customers/components/CustomerListFilter/CustomerListFilter.vue'
+import CustomerListFilter from '@/features/customers/components/CustomerListFilter.vue'
 import CustomerListSideBar from '@/features/customers/components/CustomerListSideBar.vue'
 import CustomerListTable from '@/features/customers/components/CustomerListTable.vue'
 
