@@ -32,6 +32,7 @@
                             <li><a href="{{ route('home') }}" class="hover:text-slate-900">Home</a></li>
                             <li><a href="{{ route('about') }}" class="hover:text-slate-900">About</a></li>
                             <li><a href="{{ route('vehicles.index') }}" class="hover:text-slate-900">Inventory</a></li>
+                            <li><a href="{{ route('inquiries.index') }}" class="hover:text-slate-900">Inquiries</a></li>
                         </ul>
                     </nav>
                 </div>

@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\File;
+use App\Services\InquiryDataService;
+use Illuminate\Support\Collection;
 
 class FormSubmission
 {
+    /**
+     * Read the saved submissions so legacy callers still have access.
+     */
+    public static function all(): Collection
+    {
+        return app(InquiryDataService::class)->all();
+    }
+
     /**
      * Append one inquiry into the JSON file so the demo behaves like persistence.
      */
     public static function create(array $submission): void
     {
-        $path = public_path('formSubmission.json');
-        $existing = json_decode(File::get($path), true) ?? [];
-
-        $existing[] = $submission;
-
-        File::put($path, json_encode($existing, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        app(InquiryDataService::class)->create($submission);
     }
 }

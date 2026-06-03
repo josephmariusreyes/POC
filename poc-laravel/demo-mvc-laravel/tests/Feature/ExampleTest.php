@@ -31,7 +31,9 @@ class ExampleTest extends TestCase
             ->assertStatus(200)
             ->assertSee('Toyota Camry XSE')
             ->assertSee('BMW 330i')
-            ->assertDontSee('Hyundai Palisade SEL');
+            ->assertDontSee('Hyundai Palisade SEL')
+            ->assertSee('Search inventory')
+            ->assertSee('All body styles');
     }
 
     /**
@@ -56,5 +58,31 @@ class ExampleTest extends TestCase
 
         $this->assertCount(1, $submissions);
         $this->assertSame('Demo Customer', $submissions[0]['name']);
+    }
+
+    /**
+     * Saved inquiries should be reviewable from the dedicated page.
+     */
+    public function test_saved_inquiries_page_reads_from_json(): void
+    {
+        File::put(public_path('formSubmission.json'), json_encode([
+            [
+                'vehicle_id' => 2,
+                'vehicle_name' => '2023 Honda CR-V EX-L',
+                'name' => 'Sample Lead',
+                'contact' => '0998-200-3000',
+                'email' => 'lead@example.com',
+                'message' => 'Is this vehicle still available this week?',
+                'submitted_at' => '2026-05-30 10:15:00',
+            ],
+        ], JSON_PRETTY_PRINT));
+
+        $response = $this->get('/inquiries');
+
+        $response
+            ->assertStatus(200)
+            ->assertSee('Review saved vehicle inquiries')
+            ->assertSee('2023 Honda CR-V EX-L')
+            ->assertSee('Sample Lead');
     }
 }
