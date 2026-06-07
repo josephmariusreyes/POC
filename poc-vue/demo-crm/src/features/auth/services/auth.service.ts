@@ -1,5 +1,5 @@
 import { globalHttp } from '@/app/services/http/global_http'
-import type { AuthSession, AuthUser, MockUser } from '@/features/auth/types/auth.types'
+import type { AuthSession, AuthUser, MockUser, UserRole } from '@/features/auth/types/auth.types'
 
 const USERS_ENDPOINT = '/mock-api/users.json'
 const AUTH_SESSION_STORAGE_KEY = 'demo-crm.auth.session'
@@ -17,6 +17,15 @@ function toAuthUser(user: MockUser): AuthUser {
 
 function isObject(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null
+}
+
+function isUserRole(value: unknown): value is UserRole {
+	return (
+		value === 'admin' ||
+		value === 'manager' ||
+		value === 'staff' ||
+		value === 'viewer'
+	)
 }
 
 function createMockSession(user: AuthUser): AuthSession {
@@ -59,7 +68,7 @@ function parseSession(rawSession: string): AuthSession | null {
 			typeof user.name !== 'string' ||
 			typeof user.email !== 'string' ||
 			typeof user.username !== 'string' ||
-			typeof user.role !== 'string' ||
+			!isUserRole(user.role) ||
 			typeof parsed.accessToken !== 'string' ||
 			typeof parsed.refreshToken !== 'string' ||
 			typeof parsed.expiresAt !== 'number'
@@ -67,13 +76,25 @@ function parseSession(rawSession: string): AuthSession | null {
 			return null
 		}
 
-		return parsed as AuthSession
+		return {
+			user: {
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				username: user.username,
+				role: user.role,
+			},
+			accessToken: parsed.accessToken,
+			refreshToken: parsed.refreshToken,
+			expiresAt: parsed.expiresAt,
+		}
 	} catch {
 		return null
 	}
 }
 
 export const authService = {
+	
 	async login(username: string, password: string) {
 		const response = await globalHttp.get<MockUser[]>(USERS_ENDPOINT, {
 			params: username ? { username } : undefined,
