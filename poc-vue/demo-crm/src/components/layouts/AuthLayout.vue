@@ -7,8 +7,7 @@
 	  auth-layout-background
   -->
   <div
-    class="min-h-screen
-	"
+    class="min-h-screen text-foreground auth-layout-background"
   >
     <!--
       mx-auto: centers this block horizontally within its parent by using automatic left and right margins.
