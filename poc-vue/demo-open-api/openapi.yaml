@@ -1,0 +1,944 @@
+openapi: 3.0.3
+info:
+  title: 'Maypila API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags:
+  -
+    name: Endpoints
+    description: ''
+paths:
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data:
+                    id: 16
+                    name: 'Ms. Elisabeth Okuneva'
+                    email: gulgowski.asia@example.com
+                    email_verified_at: '2026-06-18T06:52:13.000000Z'
+                    created_at: '2026-06-18T06:52:14.000000Z'
+                    updated_at: '2026-06-18T06:52:14.000000Z'
+                    mobile_number: '0'
+                    queue_session_id: null
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 16
+                      name:
+                        type: string
+                        example: 'Ms. Elisabeth Okuneva'
+                      email:
+                        type: string
+                        example: gulgowski.asia@example.com
+                      email_verified_at:
+                        type: string
+                        example: '2026-06-18T06:52:13.000000Z'
+                      created_at:
+                        type: string
+                        example: '2026-06-18T06:52:14.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-06-18T06:52:14.000000Z'
+                      mobile_number:
+                        type: string
+                        example: '0'
+                      queue_session_id:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: gbailey@example.net
+                password:
+                  type: string
+                  description: ''
+                  example: '|]|{+-'
+                device_name:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+              required:
+                - email
+                - password
+      security: []
+  /api/logout:
+    post:
+      summary: ''
+      operationId: postApiLogout
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: []
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: array
+                    example: []
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+  /api/companies:
+    get:
+      summary: ''
+      operationId: getApiCompanies
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiCompanies
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the companies table.'
+                  example: 16
+                name:
+                  type: string
+                  description: ''
+                  example: architecto
+                company_email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: zbailey@example.net
+                description:
+                  type: string
+                  description: ''
+                  example: 'Eius et animi quos velit et.'
+              required:
+                - name
+                - company_email
+                - description
+      security: []
+  '/api/companies/{id}':
+    get:
+      summary: ''
+      operationId: getApiCompaniesId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiCompaniesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the companies table.'
+                  example: 16
+                name:
+                  type: string
+                  description: ''
+                  example: architecto
+                company_email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: zbailey@example.net
+                description:
+                  type: string
+                  description: ''
+                  example: 'Eius et animi quos velit et.'
+              required:
+                - name
+                - company_email
+                - description
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the company.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/users:
+    get:
+      summary: ''
+      operationId: getApiUsers
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+                role:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+              required:
+                - companyId
+      security: []
+    post:
+      summary: ''
+      operationId: postApiUsers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: 16
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: ashly64@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: pBNvYg
+                mobileNumber:
+                  type: string
+                  description: 'Must match the regex /^09\d{9}$/.'
+                  example: '09564255931'
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+                role:
+                  type: string
+                  description: ''
+                  example: QueAdmin
+                  enum:
+                    - SuperAdmin
+                    - CompanyAdmin
+                    - QueAdmin
+                    - QueEncoder
+              required:
+                - name
+                - email
+                - password
+                - mobileNumber
+                - companyId
+                - role
+      security: []
+  '/api/users/{id}':
+    get:
+      summary: ''
+      operationId: getApiUsersId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - id
+      security: []
+    put:
+      summary: ''
+      operationId: putApiUsersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: 16
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: ashly64@example.com
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: pBNvYg
+                mobileNumber:
+                  type: string
+                  description: 'Must match the regex /^09\d{9}$/.'
+                  example: '09564255931'
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+                role:
+                  type: string
+                  description: ''
+                  example: SuperAdmin
+                  enum:
+                    - SuperAdmin
+                    - CompanyAdmin
+                    - QueAdmin
+                    - QueEncoder
+              required:
+                - name
+                - email
+                - password
+                - mobileNumber
+                - companyId
+                - role
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiUsersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/queue-sessions:
+    get:
+      summary: ''
+      operationId: getApiQueueSessions
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - companyId
+      security: []
+    post:
+      summary: ''
+      operationId: postApiQueueSessions
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                description:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - name
+                - description
+                - companyId
+      security: []
+  '/api/queue-sessions/{id}':
+    get:
+      summary: ''
+      operationId: getApiQueueSessionsId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiQueueSessionsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                description:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'Et animi quos velit et fugiat.'
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - name
+                - description
+                - companyId
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiQueueSessionsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the queue session.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/queue-sessions/add-queue-users:
+    post:
+      summary: ''
+      operationId: postApiQueueSessionsAddQueueUsers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  description: ''
+                  example: 16
+                queueSessionId:
+                  type: integer
+                  description: ''
+                  example: 16
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - userId
+                - queueSessionId
+                - companyId
+      security: []
+  /api/queue-sessions/remove-queue-user:
+    delete:
+      summary: ''
+      operationId: deleteApiQueueSessionsRemoveQueueUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  description: ''
+                  example: 16
+                queueSessionId:
+                  type: integer
+                  description: ''
+                  example: 16
+                companyId:
+                  type: integer
+                  description: ''
+                  example: 16
+              required:
+                - userId
+                - queueSessionId
+                - companyId
+      security: []
+  /api/customers:
+    get:
+      summary: ''
+      operationId: getApiCustomers
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data:
+                    id: 6
+                    queue_session_id: null
+                    first_name: Audra
+                    last_name: Crooks
+                    mobile_number: '09880026316'
+                    created_at: '2026-06-18T06:52:21.000000Z'
+                    updated_at: '2026-06-18T06:52:21.000000Z'
+                    accepted_on: null
+                    ended_on: null
+                    que_number: 197
+                    customer_status: PENDING
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6
+                      queue_session_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      first_name:
+                        type: string
+                        example: Audra
+                      last_name:
+                        type: string
+                        example: Crooks
+                      mobile_number:
+                        type: string
+                        example: '09880026316'
+                      created_at:
+                        type: string
+                        example: '2026-06-18T06:52:21.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-06-18T06:52:21.000000Z'
+                      accepted_on:
+                        type: string
+                        example: null
+                        nullable: true
+                      ended_on:
+                        type: string
+                        example: null
+                        nullable: true
+                      que_number:
+                        type: integer
+                        example: 197
+                      customer_status:
+                        type: string
+                        example: PENDING
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiCustomers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                lastName:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: 'n'
+                mobileNumber:
+                  type: string
+                  description: 'Must match the regex /^09\d{9}$/.'
+                  example: '09564255931'
+              required:
+                - firstName
+                - lastName
+                - mobileNumber
+      security: []
+  '/api/customers/{id}':
+    get:
+      summary: ''
+      operationId: getApiCustomersId
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiCustomersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the customer table.'
+                  example: 16
+                customerStatus:
+                  type: string
+                  description: ''
+                  example: Done
+                  enum:
+                    - Pending
+                    - InProgress
+                    - Done
+              required:
+                - id
+                - customerStatus
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the customer.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/access-control/app-menu:
+    get:
+      summary: ''
+      operationId: getApiAccessControlAppMenu
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Internal server error, check exception logs!'
+                  meta: null
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Internal server error, check exception logs!'
+                  meta:
+                    type: string
+                    example: null
+                    nullable: true
+      tags:
+        - Endpoints
+      security: []
