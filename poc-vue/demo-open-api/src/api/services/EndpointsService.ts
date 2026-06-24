@@ -28,13 +28,36 @@ export class EndpointsService {
             id?: number;
             name?: string;
             email?: string;
+            mobile_number?: string;
+            queue_session_id?: number;
             email_verified_at?: string;
             created_at?: string;
             updated_at?: string;
-            mobile_number?: string;
-            queue_session_id?: string | null;
+            roles?: Array<{
+                id?: number;
+                name?: string;
+                created_at?: string;
+                updated_at?: string;
+            }>;
+            companies?: Array<{
+                id?: number;
+                name?: string;
+                description?: string;
+                created_at?: string;
+                updated_at?: string;
+            }>;
+            queue_session?: {
+                id?: number;
+                created_by?: number;
+                company_id?: number;
+                name?: string;
+                description?: string;
+                queue_status?: string;
+                created_at?: string;
+                updated_at?: string;
+            };
         };
-        meta?: string | null;
+        meta?: any;
     }> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -50,8 +73,8 @@ export class EndpointsService {
     public static postApiLogout(): CancelablePromise<{
         success?: boolean;
         message?: string;
-        data?: any[];
-        meta?: string | null;
+        data?: any;
+        meta?: any;
     }> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -59,17 +82,22 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
-    public static getApiCompanies(): CancelablePromise<void> {
+    public static getApiCompanies(): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/companies',
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static postApiCompanies({
@@ -87,7 +115,12 @@ export class EndpointsService {
             company_email: string;
             description: string;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/companies',
@@ -96,7 +129,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static getApiCompaniesId({
@@ -106,7 +139,12 @@ export class EndpointsService {
          * The ID of the company.
          */
         id: string,
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/companies/{id}',
@@ -116,7 +154,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static putApiCompaniesId({
@@ -139,7 +177,12 @@ export class EndpointsService {
             company_email: string;
             description: string;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/api/companies/{id}',
@@ -151,7 +194,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static getApiUsers({
@@ -161,7 +204,12 @@ export class EndpointsService {
             companyId: number;
             role?: string | null;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/users',
@@ -170,7 +218,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static postApiUsers({
@@ -200,7 +248,12 @@ export class EndpointsService {
             companyId: number;
             role: 'SuperAdmin' | 'CompanyAdmin' | 'QueAdmin' | 'QueEncoder';
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/users',
@@ -209,7 +262,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static getApiUsersId({
@@ -219,11 +272,16 @@ export class EndpointsService {
         /**
          * The ID of the user.
          */
-        id: number,
+        id: string,
         requestBody: {
             id: number;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/users/{id}',
@@ -235,7 +293,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static putApiUsersId({
@@ -245,7 +303,7 @@ export class EndpointsService {
         /**
          * The ID of the user.
          */
-        id: number,
+        id: string,
         requestBody: {
             /**
              * The <code>id</code> of an existing record in the users table.
@@ -270,7 +328,12 @@ export class EndpointsService {
             companyId: number;
             role: 'SuperAdmin' | 'CompanyAdmin' | 'QueAdmin' | 'QueEncoder';
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/api/users/{id}',
@@ -282,7 +345,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static deleteApiUsersId({
@@ -291,8 +354,13 @@ export class EndpointsService {
         /**
          * The ID of the user.
          */
-        id: number,
-    }): CancelablePromise<void> {
+        id: string,
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/api/users/{id}',
@@ -302,7 +370,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static getApiQueueSessions({
@@ -311,7 +379,12 @@ export class EndpointsService {
         requestBody: {
             companyId: number;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/queue-sessions',
@@ -320,7 +393,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static postApiQueueSessions({
@@ -337,7 +410,12 @@ export class EndpointsService {
             description: string;
             companyId: number;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/queue-sessions',
@@ -346,7 +424,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static getApiQueueSessionsId({
@@ -356,7 +434,12 @@ export class EndpointsService {
          * The ID of the queue session.
          */
         id: string,
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/queue-sessions/{id}',
@@ -366,7 +449,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static putApiQueueSessionsId({
@@ -388,7 +471,12 @@ export class EndpointsService {
             description: string;
             companyId: number;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/api/queue-sessions/{id}',
@@ -400,7 +488,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static deleteApiQueueSessionsId({
@@ -410,7 +498,12 @@ export class EndpointsService {
          * The ID of the queue session.
          */
         id: string,
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/api/queue-sessions/{id}',
@@ -420,7 +513,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static postApiQueueSessionsAddQueueUsers({
@@ -431,7 +524,12 @@ export class EndpointsService {
             queueSessionId: number;
             companyId: number;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/queue-sessions/add-queue-users',
@@ -440,7 +538,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static deleteApiQueueSessionsRemoveQueueUser({
@@ -451,7 +549,12 @@ export class EndpointsService {
             queueSessionId: number;
             companyId: number;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/api/queue-sessions/remove-queue-user',
@@ -466,20 +569,8 @@ export class EndpointsService {
     public static getApiCustomers(): CancelablePromise<{
         success?: boolean;
         message?: string;
-        data?: {
-            id?: number;
-            queue_session_id?: string | null;
-            first_name?: string;
-            last_name?: string;
-            mobile_number?: string;
-            created_at?: string;
-            updated_at?: string;
-            accepted_on?: string | null;
-            ended_on?: string | null;
-            que_number?: number;
-            customer_status?: string;
-        };
-        meta?: string | null;
+        data?: any;
+        meta?: any;
     }> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -487,7 +578,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static postApiCustomers({
@@ -507,7 +598,12 @@ export class EndpointsService {
              */
             mobileNumber: string;
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/api/customers',
@@ -516,7 +612,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static getApiCustomersId({
@@ -525,8 +621,13 @@ export class EndpointsService {
         /**
          * The ID of the customer.
          */
-        id: number,
-    }): CancelablePromise<void> {
+        id: string,
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/customers/{id}',
@@ -536,7 +637,7 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
     public static putApiCustomersId({
@@ -546,7 +647,7 @@ export class EndpointsService {
         /**
          * The ID of the customer.
          */
-        id: number,
+        id: string,
         requestBody: {
             /**
              * The <code>id</code> of an existing record in the customer table.
@@ -554,7 +655,12 @@ export class EndpointsService {
             id: number;
             customerStatus: 'Pending' | 'InProgress' | 'Done';
         },
-    }): CancelablePromise<void> {
+    }): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/api/customers/{id}',
@@ -566,10 +672,15 @@ export class EndpointsService {
         });
     }
     /**
-     * @returns void
+     * @returns any
      * @throws ApiError
      */
-    public static getApiAccessControlAppMenu(): CancelablePromise<void> {
+    public static getApiAccessControlAppMenu(): CancelablePromise<{
+        success?: boolean;
+        message?: string;
+        data?: any;
+        meta?: any;
+    }> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/access-control/app-menu',

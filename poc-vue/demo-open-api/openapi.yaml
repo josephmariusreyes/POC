@@ -28,15 +28,48 @@ paths:
                   success: true
                   message: Success
                   data:
-                    id: 16
-                    name: 'Ms. Elisabeth Okuneva'
-                    email: gulgowski.asia@example.com
-                    email_verified_at: '2026-06-18T06:52:13.000000Z'
-                    created_at: '2026-06-18T06:52:14.000000Z'
-                    updated_at: '2026-06-18T06:52:14.000000Z'
-                    mobile_number: '0'
-                    queue_session_id: null
-                  meta: null
+                    id: 1
+                    name: 'John Doe'
+                    email: john.doe@example.com
+                    mobile_number: '+1234567890'
+                    queue_session_id: 1
+                    email_verified_at: '2026-01-15T10:30:00.000000Z'
+                    created_at: '2026-01-15T10:30:00.000000Z'
+                    updated_at: '2026-01-15T10:30:00.000000Z'
+                    roles:
+                      -
+                        id: 1
+                        name: admin
+                        created_at: '2026-01-15T10:30:00.000000Z'
+                        updated_at: '2026-01-15T10:30:00.000000Z'
+                      -
+                        id: 2
+                        name: user
+                        created_at: '2026-01-15T10:30:00.000000Z'
+                        updated_at: '2026-01-15T10:30:00.000000Z'
+                    companies:
+                      -
+                        id: 1
+                        name: 'Acme Corp'
+                        description: 'Leading technology solutions provider'
+                        created_at: '2026-01-15T10:30:00.000000Z'
+                        updated_at: '2026-01-15T10:30:00.000000Z'
+                      -
+                        id: 2
+                        name: 'Tech Innovators'
+                        description: 'Innovative software development'
+                        created_at: '2026-01-15T10:30:00.000000Z'
+                        updated_at: '2026-01-15T10:30:00.000000Z'
+                    queue_session:
+                      id: 1
+                      created_by: 1
+                      company_id: 1
+                      name: 'Morning Queue'
+                      description: 'Queue for morning shift'
+                      queue_status: active
+                      created_at: '2026-01-15T10:30:00.000000Z'
+                      updated_at: '2026-01-15T10:30:00.000000Z'
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
@@ -49,33 +82,119 @@ paths:
                     properties:
                       id:
                         type: integer
-                        example: 16
+                        example: 1
                       name:
                         type: string
-                        example: 'Ms. Elisabeth Okuneva'
+                        example: 'John Doe'
                       email:
                         type: string
-                        example: gulgowski.asia@example.com
-                      email_verified_at:
-                        type: string
-                        example: '2026-06-18T06:52:13.000000Z'
-                      created_at:
-                        type: string
-                        example: '2026-06-18T06:52:14.000000Z'
-                      updated_at:
-                        type: string
-                        example: '2026-06-18T06:52:14.000000Z'
+                        example: john.doe@example.com
                       mobile_number:
                         type: string
-                        example: '0'
+                        example: '+1234567890'
                       queue_session_id:
+                        type: integer
+                        example: 1
+                      email_verified_at:
                         type: string
-                        example: null
-                        nullable: true
+                        example: '2026-01-15T10:30:00.000000Z'
+                      created_at:
+                        type: string
+                        example: '2026-01-15T10:30:00.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-01-15T10:30:00.000000Z'
+                      roles:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            name: admin
+                            created_at: '2026-01-15T10:30:00.000000Z'
+                            updated_at: '2026-01-15T10:30:00.000000Z'
+                          -
+                            id: 2
+                            name: user
+                            created_at: '2026-01-15T10:30:00.000000Z'
+                            updated_at: '2026-01-15T10:30:00.000000Z'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: admin
+                            created_at:
+                              type: string
+                              example: '2026-01-15T10:30:00.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2026-01-15T10:30:00.000000Z'
+                      companies:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            name: 'Acme Corp'
+                            description: 'Leading technology solutions provider'
+                            created_at: '2026-01-15T10:30:00.000000Z'
+                            updated_at: '2026-01-15T10:30:00.000000Z'
+                          -
+                            id: 2
+                            name: 'Tech Innovators'
+                            description: 'Innovative software development'
+                            created_at: '2026-01-15T10:30:00.000000Z'
+                            updated_at: '2026-01-15T10:30:00.000000Z'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Acme Corp'
+                            description:
+                              type: string
+                              example: 'Leading technology solutions provider'
+                            created_at:
+                              type: string
+                              example: '2026-01-15T10:30:00.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2026-01-15T10:30:00.000000Z'
+                      queue_session:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          created_by:
+                            type: integer
+                            example: 1
+                          company_id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'Morning Queue'
+                          description:
+                            type: string
+                            example: 'Queue for morning shift'
+                          queue_status:
+                            type: string
+                            example: active
+                          created_at:
+                            type: string
+                            example: '2026-01-15T10:30:00.000000Z'
+                          updated_at:
+                            type: string
+                            example: '2026-01-15T10:30:00.000000Z'
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -118,8 +237,8 @@ paths:
                 example:
                   success: true
                   message: Success
-                  data: []
-                  meta: null
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
@@ -128,12 +247,11 @@ paths:
                     type: string
                     example: Success
                   data:
-                    type: array
-                    example: []
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -144,27 +262,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -173,7 +294,31 @@ paths:
       operationId: postApiCompanies
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -211,27 +356,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -240,7 +388,31 @@ paths:
       operationId: putApiCompaniesId
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -287,27 +459,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -334,7 +509,31 @@ paths:
       operationId: postApiUsers
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -392,27 +591,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -434,7 +636,31 @@ paths:
       operationId: putApiUsersId
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -471,7 +697,7 @@ paths:
                 role:
                   type: string
                   description: ''
-                  example: SuperAdmin
+                  example: QueAdmin
                   enum:
                     - SuperAdmin
                     - CompanyAdmin
@@ -490,7 +716,31 @@ paths:
       operationId: deleteApiUsersId
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -499,10 +749,10 @@ paths:
         in: path
         name: id
         description: 'The ID of the user.'
-        example: 1
+        example: architecto
         required: true
         schema:
-          type: integer
+          type: string
   /api/queue-sessions:
     get:
       summary: ''
@@ -510,27 +760,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -552,7 +805,31 @@ paths:
       operationId: postApiQueueSessions
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -586,27 +863,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -615,7 +895,31 @@ paths:
       operationId: putApiQueueSessionsId
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -647,7 +951,31 @@ paths:
       operationId: deleteApiQueueSessionsId
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -666,7 +994,31 @@ paths:
       operationId: postApiQueueSessionsAddQueueUsers
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -699,7 +1051,31 @@ paths:
       operationId: deleteApiQueueSessionsRemoveQueueUser
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -742,19 +1118,8 @@ paths:
                 example:
                   success: true
                   message: Success
-                  data:
-                    id: 6
-                    queue_session_id: null
-                    first_name: Audra
-                    last_name: Crooks
-                    mobile_number: '09880026316'
-                    created_at: '2026-06-18T06:52:21.000000Z'
-                    updated_at: '2026-06-18T06:52:21.000000Z'
-                    accepted_on: null
-                    ended_on: null
-                    que_number: 197
-                    customer_status: PENDING
-                  meta: null
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
@@ -764,47 +1129,10 @@ paths:
                     example: Success
                   data:
                     type: object
-                    properties:
-                      id:
-                        type: integer
-                        example: 6
-                      queue_session_id:
-                        type: string
-                        example: null
-                        nullable: true
-                      first_name:
-                        type: string
-                        example: Audra
-                      last_name:
-                        type: string
-                        example: Crooks
-                      mobile_number:
-                        type: string
-                        example: '09880026316'
-                      created_at:
-                        type: string
-                        example: '2026-06-18T06:52:21.000000Z'
-                      updated_at:
-                        type: string
-                        example: '2026-06-18T06:52:21.000000Z'
-                      accepted_on:
-                        type: string
-                        example: null
-                        nullable: true
-                      ended_on:
-                        type: string
-                        example: null
-                        nullable: true
-                      que_number:
-                        type: integer
-                        example: 197
-                      customer_status:
-                        type: string
-                        example: PENDING
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -813,7 +1141,31 @@ paths:
       operationId: postApiCustomers
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -847,27 +1199,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
@@ -876,7 +1231,31 @@ paths:
       operationId: putApiCustomersId
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
+                  meta:
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       requestBody:
@@ -893,7 +1272,7 @@ paths:
                 customerStatus:
                   type: string
                   description: ''
-                  example: Done
+                  example: Pending
                   enum:
                     - Pending
                     - InProgress
@@ -907,10 +1286,10 @@ paths:
         in: path
         name: id
         description: 'The ID of the customer.'
-        example: 1
+        example: architecto
         required: true
         schema:
-          type: integer
+          type: string
   /api/access-control/app-menu:
     get:
       summary: ''
@@ -918,27 +1297,30 @@ paths:
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: false
-                  message: 'Internal server error, check exception logs!'
-                  meta: null
+                  success: true
+                  message: Success
+                  data: {  }
+                  meta: {  }
                 properties:
                   success:
                     type: boolean
-                    example: false
+                    example: true
                   message:
                     type: string
-                    example: 'Internal server error, check exception logs!'
+                    example: Success
+                  data:
+                    type: object
+                    properties: {  }
                   meta:
-                    type: string
-                    example: null
-                    nullable: true
+                    type: object
+                    properties: {  }
       tags:
         - Endpoints
       security: []
